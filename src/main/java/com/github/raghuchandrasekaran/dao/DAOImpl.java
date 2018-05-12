@@ -6,6 +6,7 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 
 public abstract class DAOImpl<T> implements DAO<T> {
@@ -35,6 +36,10 @@ public abstract class DAOImpl<T> implements DAO<T> {
 
 	public void deleteAll() {
 		getCollection().deleteMany(new Document());
+	}
+
+	public FindIterable<T> find() {
+		return getCollection().find();
 	}
 
 }
