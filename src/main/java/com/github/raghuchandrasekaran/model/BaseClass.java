@@ -1,6 +1,10 @@
 package com.github.raghuchandrasekaran.model;
 
-public class BaseClass {
+import java.util.LinkedHashMap;
+
+public class BaseClass extends LinkedHashMap<String, Object> {
+
+	private static final long serialVersionUID = -6077164259706455977L;
 
 	private String name;
 

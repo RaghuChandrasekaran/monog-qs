@@ -2,6 +2,8 @@ package com.github.raghuchandrasekaran.model;
 
 public class ChildClass extends BaseClass {
 
+	private static final long serialVersionUID = -1031799494071562815L;
+
 	private String childProperty;
 
 	public ChildClass() {

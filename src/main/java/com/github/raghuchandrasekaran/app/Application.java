@@ -3,6 +3,7 @@ package com.github.raghuchandrasekaran.app;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import org.bson.Document;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -11,7 +12,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.github.raghuchandrasekaran.dao.DAO;
 import com.github.raghuchandrasekaran.model.BaseClass;
 import com.github.raghuchandrasekaran.model.ChildClass;
-import com.mongodb.Block;
 import com.mongodb.client.FindIterable;
 
 public class Application {
@@ -30,7 +30,8 @@ public class Application {
 		baseClassDao.addObjects(Collections.singletonList(base));
 
 		FindIterable<BaseClass> items = baseClassDao.find();
-		items.forEach((Block<BaseClass>) item -> System.out.println(item.toString()));
+		Consumer<Map> print = baseItem -> System.out.println(baseItem.toString());
+		items.forEach(print);
 		ctx.close();
 	}
 }

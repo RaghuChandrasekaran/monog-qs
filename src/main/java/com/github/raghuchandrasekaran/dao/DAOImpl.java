@@ -26,20 +26,24 @@ public abstract class DAOImpl<T> implements DAO<T> {
 		this.type = type;
 	}
 
+	@Override
 	public MongoCollection<T> getCollection() {
 		return mongoClient.getDatabase(databaseName).getCollection(collectionName, type);
 	}
 
+	@Override
 	public void addObjects(List<T> objs) {
 		getCollection().insertMany(objs);
 	}
 
+	@Override
 	public void deleteAll() {
 		getCollection().deleteMany(new Document());
 	}
 
+	@Override
 	public FindIterable<T> find() {
-		return getCollection().find();
+		return getCollection().find(type);
 	}
 
 }
